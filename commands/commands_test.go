@@ -58,6 +58,9 @@ var DecCommand = &commands.ProtoCommand{
 		systemUnderTest.(*counter).Dec()
 		return nil
 	},
+	PreConditionFunc: func(state commands.State) bool {
+		return state.(int) > 0
+	},
 	NextStateFunc: func(state commands.State) commands.State {
 		return state.(int) - 1
 	},
