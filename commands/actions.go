@@ -58,10 +58,10 @@ func genActions(commands Commands) gopter.Gen {
 	}, reflect.TypeOf((*actions)(nil)))
 }
 
-func genSizedCommands(commands Commands, inistialState State) gopter.Gen {
+func genSizedCommands(commands Commands, initialState State) gopter.Gen {
 	return func(genParams *gopter.GenParameters) *gopter.GenResult {
 		sizedCommandsGen := gen.Const(sizedCommands{
-			state:    inistialState,
+			state:    initialState,
 			commands: make([]Command, 0, genParams.Size),
 		})
 		for i := 0; i < genParams.Size; i++ {
